@@ -46,3 +46,15 @@ input:focus {
     border: none;
     box-shadow: none;
 }
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #f65a5b;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #f65a5b;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #f65a5b;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #f65a5b;
+}

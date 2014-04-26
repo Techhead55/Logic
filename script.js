@@ -9,6 +9,9 @@
             num = num+"0";
         }
         inp.focus();
+        document.getElementsByTagName("body")[0].onclick = function(){
+            inp.focus();
+        };
         inp.onkeyup = function(){
             if (won){
                 
