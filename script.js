@@ -26,6 +26,31 @@
                 }
             }
         };
+        function output(){
+            var element = document.createElement("div"),
+                rowCountString = rowcount+"",
+                correctPlace = 0,
+                correctNumber = 0;
+            outer:
+            for (var i=0; i<inp.value.length; i++){
+                if (inp.value[i]===num[i]){
+                    correctPlace++;
+                }
+                for (var x=0; x<num.length; x++){
+                    if (inp.value[i]===num[x]){
+                        correctNumber++;
+                        continue outer;
+                    }
+                }
+            }
+            if (rowCountString.length < 2){
+                rowCountString = "0"+rowCountString;
+            }
+            rowcount += 1;
+            element.setAttribute("class", "row");
+            element.innerHTML = rowCountString+" "+inp.value+" "+correctPlace+correctNumber;
+            out.appendChild(element);
+        }
         inp.onkeydown = function(e){
             code = e.keyCode;
             if (code===13){
@@ -35,25 +60,7 @@
                             rowCountString = rowcount+"",
                             correctPlace = 0,
                             correctNumber = 0;
-                        for (var i=0; i<inp.value.length; i++){
-                            for (var x=0; x<num.length; x++){
-                                if (inp.value[i]===num[x]){
-                                    correctNumber++;
-                                    break;
-                                }
-                            }
-                            if (inp.value[i]===num[i]){
-                                correctPlace++;
-                            }
-                        }
-                        if (rowCountString.length < 2){
-                            rowCountString = "0"+rowCountString;
-                        }
-                        rowcount += 1;
-                        element.setAttribute("class", "row");
-                        console.log(rowCountString, inp.value, correctPlace, correctNumber);
-                        element.innerHTML = rowCountString+" "+inp.value+" "+correctPlace+correctNumber;
-                        out.appendChild(element);
+                        output();
                         won = true;
                         inp.style.color = "#A4C639";
                         inp.value = "Correct";
@@ -62,29 +69,7 @@
                         if (won){
                             window.location.reload()
                         } else {
-                            var element = document.createElement("div"),
-                                rowCountString = rowcount+"",
-                                correctPlace = 0,
-                                correctNumber = 0;
-                            for (var i=0; i<inp.value.length; i++){
-                                for (var x=0; x<num.length; x++){
-                                    if (inp.value[i]===num[x]){
-                                        correctNumber++;
-                                        break;
-                                    }
-                                }
-                                if (inp.value[i]===num[i]){
-                                    correctPlace++;
-                                }
-                            }
-                            if (rowCountString.length < 2){
-                                rowCountString = "0"+rowCountString;
-                            }
-                            rowcount += 1;
-                            element.setAttribute("class", "row");
-                            console.log(rowCountString, inp.value, correctPlace, correctNumber);
-                            element.innerHTML = rowCountString+" "+inp.value+" "+correctPlace+correctNumber;
-                            out.appendChild(element);
+                            output();
                             inp.value = "";
                         }
                     }
