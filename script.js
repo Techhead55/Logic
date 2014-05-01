@@ -1,30 +1,23 @@
 (function(){
     window.onload = function(){
-        var num = (Math.floor(Math.random()*100000))+"",
+        var num = (Math.floor(Math.random()*100000+1000))+"",
             out = document.getElementById("container"),
             inp = document.getElementById("input"),
-            rowcount = 1,
             won = false;
-        if (num.length === 4){
-            num = num+"0";
-        }
+        console.log(num);
         inp.focus();
         document.getElementsByTagName("body")[0].onclick = function(){
             inp.focus();
         };
         inp.onkeyup = function(){
-            if (won){
-                
-            } else {
-                this.value = isNaN(parseFloat(this.value[this.value.length-1])) ? this.value.substring(0, this.value.length-1) : this.value;
-            }
+            this.value = won ? this.value : (isNaN(parseFloat(this.value[this.value.length-1])) ? this.value.substring(0, this.value.length-1) : this.value);
         };
         function output(){
             var element = document.createElement("div"),
-                rowCountString = rowcount+"",
                 correctPlace = 0,
                 correctNumber = 0,
-                blackList = [];
+                blackList = [],
+                rowcount = document.getElementById("container").getElementsByTagName("div").length + 1;
             for (var i=0; i<inp.value.length; i++){
                 if (inp.value[i]===num[i]){
                     correctPlace++;
@@ -45,10 +38,6 @@
                     }
                 }
             }
-            if (rowCountString.length < 2){
-                rowCountString = "0"+rowCountString;
-            }
-            rowcount += 1;
             $("input").animate({
                 marginTop: "-60px"
             }, 300, function(){
@@ -75,8 +64,7 @@
                 });
             });
             element.setAttribute("class", "row");
-            element.innerHTML = rowCountString+" "+inp.value+" "+correctPlace+correctNumber;
-            
+            element.innerHTML = ((rowcount+"").length < 2 ? "0"+rowcount : rowcount)+" "+inp.value+" "+correctPlace+correctNumber;
         }
         inp.onkeydown = function(e){
             code = e.keyCode;
@@ -96,5 +84,4 @@
             }
         };
     };
-})();
- 
+})(); 
