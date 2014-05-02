@@ -18,11 +18,7 @@
                 correctNumber = 0,
                 blackList = [],
                 rowcount = document.getElementById("container").getElementsByTagName("div").length + 1;
-            for (var i=0; i<inp.value.length; i++){
-                if (inp.value[i]===num[i]){
-                    correctPlace++;
-                }
-            }
+            for (var i=0; i<inp.value.length; i++, correctPlace = inp.value[i]===num[i] ? correctPlace+1 : correctPlace){}
             for (var i=0; i<inp.value.length; i++){
                 labelled:
                 for (var x=0; x<num.length; x++){
@@ -70,16 +66,11 @@
             code = e.keyCode;
             if (code===13){
                 if (!(inp.value.length < 5)){
-                    if (inp.value === num){
-                        output();
-                        won = true;
-                    } else {
-                        if (won){
-                            window.location.reload()
-                        } else {
-                            output();
-                        }
+                    if (won){
+                        window.location.reload()
                     }
+                    won = inp.value === num ? true : false;
+                    output();
                 }
             }
         };
