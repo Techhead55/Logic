@@ -1,9 +1,13 @@
+Array.prototype.compare = function(array){
+    
+};
 (function(){
     window.onload = function(){
-        var num = (Math.floor(Math.random()*100000+1000))+"",
+        var num = (parseInt(Math.random()*100000, 10))+"",
             out = document.getElementById("container"),
             inp = document.getElementById("input"),
             won = false;
+        num = num = ((new Array(4-num.length)).join("0"))+num;
         console.log(num);
         inp.focus();
         document.getElementsByTagName("body")[0].onclick = function(){
@@ -76,3 +80,7 @@
         };
     };
 })(); 
+
+
+
+
